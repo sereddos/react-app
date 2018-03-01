@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 
 class Article extends Component {
-  state = {
-    isOpen: true
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isOpen: props.defaultOpen
+    }
   }
 
   render() {
