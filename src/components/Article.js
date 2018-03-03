@@ -1,38 +1,38 @@
 import React, {PureComponent} from 'react'
 
 class Article extends PureComponent {
-  constructor(props) {
+  /*constructor(props) {
     super(props)
 
     this.state = {
       isOpen: props.defaultOpen
     }
-  }
+  }*/
 
   componentWillMount() {
     console.log('----', 'mounting')
   }
 
-  componentWillReceiveProps(nextProps) {
+/*  componentWillReceiveProps(nextProps) {
     console.log('----', 'will receive props')
     if (nextProps.defaultOpen !== this.props.defaultOpen) this.setState({
       isOpen: nextProps.defaultOpen
     })
-  }
+  }*/
 
   componentWillUpdate() {
     console.log('----', 'will update')
   }
 
   render() {
-    const {article} = this.props
-    const body = this.state.isOpen && <section className="card-text">{article.text}</section>
+    const {article, isOpen, onButtonClick} = this.props
+    const body = isOpen && <section className="card-text">{article.text}</section>
     return (
         <div className="card">
           <div className="card-header">
             <h2>{article.title}
-              <button onClick={this.handleClick} className="btn btn-primary float-right">
-                {this.state.isOpen ? 'close' : 'open'}
+              <button onClick={onButtonClick} className="btn btn-primary float-right">
+                {isOpen ? 'close' : 'open'}
               </button>
             </h2>
           </div>
@@ -44,12 +44,6 @@ class Article extends PureComponent {
           </div>
         </div>
     )
-  }
-
-  handleClick = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
   }
 }
 
