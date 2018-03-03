@@ -1,12 +1,27 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
-class Article extends Component {
+class Article extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
       isOpen: props.defaultOpen
     }
+  }
+
+  componentWillMount() {
+    console.log('----', 'mounting')
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('----', 'will receive props')
+    if (nextProps.defaultOpen !== this.props.defaultOpen) this.setState({
+      isOpen: nextProps.defaultOpen
+    })
+  }
+
+  componentWillUpdate() {
+    console.log('----', 'will update')
   }
 
   render() {
